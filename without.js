@@ -1,47 +1,22 @@
-//Implement the following scenario using without feature
-
-//const words = ["hello", "world", "lighthouse"];
-//without(words, ["lighthouse"]); // no need to capture return value for this test case
-// Make sure the original array was not altered by the without function
-//assertArraysEqual(words, ["hello", "world", "lighthouse"]);
-
-
-
-//FUNCTION IMPLEMENTATION
-const assertEqual = function(actual, expected) {
-  if (actual === expected) {
-    console.log(`✅✅✅ Assertion Passed: ${actual} === ${expected}`);
-  } else {
-    console.log(`🛑🛑🛑 Assertion Failed: ${actual} !== ${expected}`);
-  }
-};
-
-//TEST CODE
-assertEqual("Lighthouse Labs", "Bootcamp");
-assertEqual("1", "1");
-
-
-/FUNCTION IMPLEMENTATION
-const eqArrays = function(array1, array2) {
-  if (array1.length !== array2.length) {
-    return false;
-  }
-  for (let value = 0; value < array1.length; value += 1) {
-    if ((Array.isArray(array1[value]) || Array.isArray(array2[value])) && eqArrays(array1[value], array2[value]) === false) {
-      return false;
-    } else if (Array.isArray(array1[value]) || Array.isArray(array2[value])) {
-      eqArrays(array1[value], array2[value]);
-    } else if (array1[value] !== array2[value]) {
-      return false;
+const without = function(array, itemsToRemove) {
+  let newArray = [];
+  //iterate over the given array
+  for (let i = 0; i < array.length; i++) {
+    //iterate over the itemsToRemove array
+    for (let x = 0; x < itemsToRemove.length; x++) {
+      //if the element in the given array is equal to the element in the itemsToRemove array then break from the loop
+      if (array[i] === itemsToRemove[x]) {
+        break;
+      }
+      if (itemsToRemove.length - 1 === x) {
+        newArray.push(array[i]);
+        //Test to see what has been pushed for each test
+        //console.log(newArray);
+      }
     }
   }
-  return true;
+  return newArray;
 };
 
-module.exports = eqArrays;
-
-moduel.exports = eqArrays([1, 2, 3], [1, 2, 3]) // => true
-module.exports = eqArrays([1, 2, 3], [3, 2, 1]) // => false
-
-module.exports = eqArrays(["1", "2", "3"], ["1", "2", "3"]) // => true
-module.exports = eqArrays(["1", "2", "3"], ["1", "2", 3]) // => false
+console.log(without([1, 2, 3], [1])) // => [2, 3]
+console.log(without(["1", "2", "3"], [1, 2, "3"])) // => ["1", "2"]
