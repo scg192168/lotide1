@@ -1,7 +1,6 @@
-// Create a function flatten which will take in 
-//an array of arrays and return a "flattened" version of the array.
+// Create a function flatten which will take in an array of arrays and return a "flattened" version of the array.
 
-const flatten = function(array) {
+const flatten = function (array) {
   // Create a new array
   var newArray = [];
   for (let i = 0; i < array.length; i++) {
@@ -15,4 +14,5 @@ const flatten = function(array) {
   }
   return newArray;
 };
+
 console.log(flatten([1, 2, [3, 4], 5, [6]])) // => [1, 2, 3, 4, 5, 6])
